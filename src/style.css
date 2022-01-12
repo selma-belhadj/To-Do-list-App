@@ -1,3 +1,71 @@
 .hello {
   color: blue;
 }
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  box-shadow: rgba(0, 0, 0, 0.24) 0 3px 8px;
+  max-width: 40%;
+  margin: 50px auto;
+}
+
+.title {
+  padding: 3%;
+  color: #444b57;
+  font-size: 40px;
+  height: 50px;
+  line-height: 50px;
+}
+
+.container input[type='text'] {
+  width: 94%;
+  font-style: italic;
+  border-top: 0.6px solid rgb(216, 216, 216);
+  border-right: none;
+  border-bottom: 0.6px solid rgb(216, 216, 216);
+  border-left: none;
+  padding: 3%;
+}
+
+.container input[type='text']:focus {
+  outline: none;
+}
+
+.clear {
+  background-color: rgba(240, 240, 240, 0.493);
+  text-align: center;
+  padding: 3%;
+}
+
+.clear a {
+  color: #444b57;
+}
+
+.clear a:hover {
+  color: #777a87;
+  text-decoration: underline;
+  font-weight: bold;
+}
+
+.todo-item {
+  padding: 3%;
+  border-bottom: 0.6px solid rgb(216, 216, 216);
+}
+
+.checkmark {
+  margin: 10px;
+  height: 15px;
+  width: 15px;
+  background-color: transparent;
+  border: 2px solid #b4b4b6;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.checkmark:hover {
+  border-color: #8c8c8f;
+}
