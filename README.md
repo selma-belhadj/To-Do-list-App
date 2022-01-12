@@ -2,7 +2,8 @@
 
 # Webpack Templte
 
-Additional description about the project and its features.
+In this project, I have built a simple HTML list of To Do tasks. The list is styled according to the listed specifications . This simple web page will be built using webpack and served by a webpack dev server.
+
 
 ## Getting Started
 
@@ -18,10 +19,9 @@ npm start
 
 👤 **Omar Salem**
 
-- GitHub: [Omar Salem](https://github.com/omarsalem7)
-- Twitter: [Omar Salem](https://twitter.com/Omar80491499)
-- LinkedIn: [Omar Salem](https://www.linkedin.com/in/omar-salem-a6945b177/)
-
+- GitHub: [@selma-belhadj](https://github.com/selma-belhadj)
+- Twitter: [@Bel_Selma16](https://twitter.com/Bel_Selma16)
+- LinkedIn: [@selma-belhadj](https://www.linkedin.com/in/selma-belhadj/)
 
 ## Show your support
 
@@ -30,3 +30,5 @@ Give a ⭐️ if you like this project!
 ## 📝 License
 
 Thanks [Ahmed](https://github.com/ahmedtaa) for this great idea.
+Thanks [Omar](https://github.com/omarsalem7) for this great webpack template.
+
