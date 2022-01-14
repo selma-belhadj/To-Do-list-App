@@ -1,14 +1,10 @@
-.hello {
-  color: blue;
-}
-
 * {
   margin: 0;
   padding: 0;
 }
 
 .container {
-  box-shadow: rgba(0, 0, 0, 0.24) 0 3px 8px;
+  box-shadow: rgb(0 0 0 / 24%) 0 3px 8px;
   max-width: 40%;
   margin: 50px auto;
 }
@@ -17,55 +13,74 @@
   padding: 3%;
   color: #444b57;
   font-size: 40px;
-  height: 50px;
-  line-height: 50px;
 }
 
-.container input[type='text'] {
-  width: 94%;
-  font-style: italic;
-  border-top: 0.6px solid rgb(216, 216, 216);
+form {
+  display: flex;
+  justify-content: space-between;
+  padding-right: 0;
+  position: relative;
+  border-top: 0.6px solid rgb(216 216 216);
   border-right: none;
-  border-bottom: 0.6px solid rgb(216, 216, 216);
+  border-bottom: 0.6px solid rgb(216 216 216);
   border-left: none;
+}
+
+.todo-edit {
+  border: none;
+}
+
+form input[type="text"] {
+  border: none;
+  font-style: italic;
+  width: 85%;
   padding: 3%;
 }
 
-.container input[type='text']:focus {
+form .add-btn {
+  position: relative;
+  right: 3.2%;
+}
+
+input[type="text"]:focus {
   outline: none;
 }
 
+.todo-item {
+  padding: 3%;
+  border-bottom: 0.6px solid rgb(216 216 216);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+button {
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+}
+
 .clear {
-  background-color: rgba(240, 240, 240, 0.493);
+  background-color: rgb(240 240 240 / 20%);
   text-align: center;
   padding: 3%;
 }
 
 .clear a {
-  color: #444b57;
+  cursor: pointer;
+  color: rgb(80 75 75);
 }
 
 .clear a:hover {
-  color: #777a87;
+  color: #444b57;
   text-decoration: underline;
   font-weight: bold;
 }
 
-.todo-item {
-  padding: 3%;
-  border-bottom: 0.6px solid rgb(216, 216, 216);
-}
-
-.checkmark {
-  margin: 10px;
-  height: 15px;
-  width: 15px;
-  background-color: transparent;
-  border: 2px solid #b4b4b6;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.checkmark:hover {
-  border-color: #8c8c8f;
+.checked {
+  text-decoration: line-through;
 }

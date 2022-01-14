@@ -1,23 +1,39 @@
 ![](https://img.shields.io/badge/Microverse-blueviolet)
 
-# Webpack Templte
+# TODO LIST APP
 
-In this project, I have built a simple HTML list of To Do tasks. The list is styled according to the listed specifications . This simple web page will be built using webpack and served by a webpack dev server.
+In this project, I have built a simple HTML list of To Do tasks. The list is styled according to the listed specifications . This simple web page will be built using webpack and served by a webpack dev server. I have implemented the CRUD (create, update, delete) methods. So all the elements of the user interface will be fully functional.
+![](./src/images/Screenshot.png)
+## Live Demo
 
+[Live Demo Link]( https://selma-belhadj.github.io/To-Do-list-App/)
+
+## Built With
+
+- HTML
+- CSS
+- Javascript
+
+## Prerequisites
+- Linters
+- GitHub Flow
+- Javascript
 
 ## Getting Started
 
-after cloneing
-
-```
-npm install
-npm start
-```
+- clone the repository by running
+``` git clone git@github.com:selma-belhadj/To-Do-list-App.git ```
+- navigate to the folder
+``` cd To-Do-list-App ```
+- Install packages
+``` npm install ```
+- Run the app
+``` npm start ```
 
 
 ## Authors
 
-👤 **Omar Salem**
+👤 **Selma Belhadj**
 
 - GitHub: [@selma-belhadj](https://github.com/selma-belhadj)
 - Twitter: [@Bel_Selma16](https://twitter.com/Bel_Selma16)
@@ -29,6 +45,6 @@ Give a ⭐️ if you like this project!
 
 ## 📝 License
 
-Thanks [Ahmed](https://github.com/ahmedtaa) for this great idea.
-Thanks [Omar](https://github.com/omarsalem7) for this great webpack template.
+Thanks to [Ahmed](https://github.com/ahmedtaa) for this great idea.
+Thanks to [Omar](https://github.com/omarsalem7) for this great webpack template.
 

@@ -1,33 +1,19 @@
 import './style.css';
+import display from './display.js';
+import Tasks from './tasks.js';
 
-const tasklist = [{
-  description: 'task 1',
-  completed: true,
-  index: 1,
-}, {
-  description: 'task 2',
-  completed: false,
-  index: 2,
-}, {
-  description: 'task 3',
-  completed: true,
-  index: 3,
-}, {
-  description: 'task 4',
-  completed: true,
-  index: 4,
-}];
+const tasksContainer = document.querySelector('.tasks-container');
+const taskLists = new Tasks();
+display(taskLists, tasksContainer);
 
-const render = (tasks) => {
-  const tasksListSorted = tasks.sort((a, b) => a.index - b.index);
-  const tasksContainer = document.querySelector('.tasks-container');
-  let todosHtml = '';
-  tasksListSorted.forEach((todo) => {
-    todosHtml += ` <div class="todo-item">
-        <input type="checkbox" class="checkmark" /><span> ${todo.description}</span>
-    </div>`;
-  });
-  tasksContainer.innerHTML = todosHtml;
-};
-
-render(tasklist);
+const addTodoBtn = document.querySelector('.add-btn');
+addTodoBtn.addEventListener('click', () => {
+  const description = document.querySelector('.input-todo').value.trim();
+  const completed = false;
+  const index = taskLists.list.length + 1;
+  const newTodo = { description, completed, index };
+  if (description) {
+    taskLists.addTask(newTodo);
+    display(taskLists, tasksContainer);
+  }
+});
