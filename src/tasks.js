@@ -8,20 +8,17 @@ export default class Tasks {
     localStorage.setItem('tasks-container', JSON.stringify(this.list));
   }
 
-  RemoveTask(index) {
-    this.list = this.list.filter((task) => task.index !== index);
-    this.list = this.list.map((t) => {
-      if (t.index > index) {
-        t.index -= 1;
-      }
-      return t;
+  RemoveTask(taskID) {
+    this.list = this.list.filter((todo) => todo.id !== taskID);
+    this.list.forEach((todo, index) => {
+      todo.index = index + 1;
     });
     localStorage.setItem('tasks-container', JSON.stringify(this.list));
   }
 
   EditTask(taskID, taskDescription) {
     const newData = this.list.map((todo) => {
-      if (todo.index === taskID) {
+      if (todo.id === taskID) {
         return { ...todo, description: taskDescription };
       }
       return todo;
@@ -31,6 +28,20 @@ export default class Tasks {
 
   SortTasks(oldIndex, newIndex) {
     this.list[oldIndex - 1].index = newIndex;
+    localStorage.setItem('tasks-container', JSON.stringify(this.list));
+  }
+
+  CompleteTask(taskId, status) {
+    const selected = this.list.findIndex((element) => element.id === taskId);
+    this.list[selected].completed = status;
+    localStorage.setItem('tasks-container', JSON.stringify(this.list));
+  }
+
+  clearCompletedTasks() {
+    this.list = this.list.filter((todo) => !todo.completed);
+    this.list.forEach((todo, index) => {
+      todo.index = index + 1;
+    });
     localStorage.setItem('tasks-container', JSON.stringify(this.list));
   }
 }
