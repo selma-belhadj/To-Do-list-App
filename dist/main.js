@@ -350,7 +350,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".hello {\n  color: blue;\n}\n\n* {\n  margin: 0;\n  padding: 0;\n}\n\n.container {\n  box-shadow: rgba(0, 0, 0, 0.24) 0 3px 8px;\n  max-width: 40%;\n  margin: 50px auto;\n}\n\n.title {\n  padding: 3%;\n  color: #444b57;\n  font-size: 40px;\n  height: 50px;\n  line-height: 50px;\n}\n\n.container input[type='text'] {\n  width: 94%;\n  font-style: italic;\n  border-top: 0.6px solid rgb(216, 216, 216);\n  border-right: none;\n  border-bottom: 0.6px solid rgb(216, 216, 216);\n  border-left: none;\n  padding: 3%;\n}\n\n.container input[type='text']:focus {\n  outline: none;\n}\n\n.clear {\n  background-color: rgba(240, 240, 240, 0.493);\n  text-align: center;\n  padding: 3%;\n}\n\n.clear a {\n  color: #444b57;\n}\n\n.clear a:hover {\n  color: #777a87;\n  text-decoration: underline;\n  font-weight: bold;\n}\n\n.todo-item {\n  padding: 3%;\n  border-bottom: 0.6px solid rgb(216, 216, 216);\n}\n\n.checkmark {\n  margin: 10px;\n  height: 15px;\n  width: 15px;\n  background-color: transparent;\n  border: 2px solid #b4b4b6;\n  border-radius: 4px;\n  cursor: pointer;\n}\n\n.checkmark:hover {\n  border-color: #8c8c8f;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "* {\n  margin: 0;\n  padding: 0;\n}\n\n.container {\n  box-shadow: rgb(0 0 0 / 24%) 0 3px 8px;\n  max-width: 40%;\n  margin: 50px auto;\n}\n\n.title {\n  padding: 3%;\n  color: #444b57;\n  font-size: 40px;\n}\n\nform {\n  display: flex;\n  justify-content: space-between;\n  padding-right: 0;\n  position: relative;\n  border-top: 0.6px solid rgb(216 216 216);\n  border-right: none;\n  border-bottom: 0.6px solid rgb(216 216 216);\n  border-left: none;\n}\n\n.todo-edit {\n  border: none;\n}\n\nform input[type=\"text\"] {\n  border: none;\n  font-style: italic;\n  width: 85%;\n  padding: 3%;\n}\n\nform .add-btn {\n  position: relative;\n  right: 3.2%;\n}\n\ninput[type=\"text\"]:focus {\n  outline: none;\n}\n\n.todo-item {\n  padding: 3%;\n  border-bottom: 0.6px solid rgb(216 216 216);\n  display: flex;\n  flex-direction: row;\n  justify-content: space-between;\n}\n\nbutton {\n  background: none;\n  color: inherit;\n  border: none;\n  padding: 0;\n  font: inherit;\n  cursor: pointer;\n  outline: inherit;\n}\n\n.clear {\n  background-color: rgb(240 240 240 / 20%);\n  text-align: center;\n  padding: 3%;\n}\n\n.clear a {\n  cursor: pointer;\n  color: rgb(80 75 75);\n}\n\n.clear a:hover {\n  color: #444b57;\n  text-decoration: underline;\n  font-weight: bold;\n}\n\n.checked {\n  text-decoration: line-through;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -480,25 +480,54 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-const render = (todosList) => {
-  console.log('Hello');
-  const sortedTasks = todosList.list.sort((a, b) => a.index - b.index);
-  console.log('Hello2');
-  const tasksContainer = document.querySelector('.tasks-container');
+const display = (taskLists, tasksContainer) => {
+  const sortedTodos = taskLists.list.sort((a, b) => a.index - b.index);
+  tasksContainer.innerHTML = '';
   let todosHtml = '';
-  sortedTasks.forEach((todo) => {
+  sortedTodos.forEach((todo) => {
+    const checkedTodo = todo.completed ? 'checked' : '';
+    const checkClass = todo.completed ? 'checked' : '';
     todosHtml += `  <div class="todo-item">
-                            <div>
-                                <input type="checkbox" class="checkmark" />
-                                <input id="${todo.index}" type="text" value="${todo.description}" />
-                            </div>
-                            <button id="${todo.index}" class="remove-btn"> <i class="fas fa-trash"></i></button>
-                        </div>
-        `;
+                              <div>
+                                  <input id="${todo.id}" type="checkbox" class="todo-check" ${checkedTodo} />
+                                  <input id="${todo.id}" type="text" class="todo-edit" ${checkClass} value="${todo.description}" />
+                              </div>
+                              <button id="${todo.id}" class="remove-btn"> <i class="fas fa-trash"></i></button>
+                          </div>
+          `;
   });
+
   tasksContainer.innerHTML = todosHtml;
+
+  // remove todo
+  const removeBtns = document.querySelectorAll('.remove-btn');
+  removeBtns.forEach((btn) => {
+    btn.addEventListener('click', (e) => {
+      const element = btn.parentNode;
+      element.remove();
+      taskLists.RemoveTask(e.target.parentNode.id);
+    });
+  });
+
+  // edit todo
+  const todosContent = document.querySelectorAll('.todo-edit');
+  todosContent.forEach((todo) => {
+    todo.addEventListener('change', (e) => {
+      taskLists.EditTask(e.target.id, e.target.value);
+    });
+  });
+
+  // Complete Todo
+  const taskCheck = document.querySelectorAll('.todo-check');
+  taskCheck.forEach((todo) => {
+    todo.addEventListener('change', (e) => {
+      const { id } = e.target;
+      taskLists.CompleteTask(id, e.target.checked);
+      e.target.parentNode.lastElementChild.classList.toggle('checked');
+    });
+  });
 };
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (render);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (display);
 
 
 /***/ }),
@@ -515,26 +544,26 @@ class Tasks {
   }
 
   addTask(task) {
-    // task.index = this.list.length + 1;
-    // task.completed = false;
     this.list.push(task);
     localStorage.setItem('tasks-container', JSON.stringify(this.list));
   }
 
-  RemoveTask(index) {
-    this.list = this.list.filter((task) => task.index !== index);
-    this.list = this.list.map((t) => {
-      if (t.index > index) {
-        t.index -= 1;
-      }
-      return t;
+  RemoveTask(taskID) {
+    this.list = this.list.filter((todo) => todo.id !== taskID);
+    this.list.forEach((todo, index) => {
+      todo.index = index + 1;
     });
     localStorage.setItem('tasks-container', JSON.stringify(this.list));
   }
 
-  EditTask(task) {
-    this.list[task.index - 1] = task;
-    localStorage.setItem('tasks-container', JSON.stringify(this.list));
+  EditTask(taskID, taskDescription) {
+    const newData = this.list.map((todo) => {
+      if (todo.id === taskID) {
+        return { ...todo, description: taskDescription };
+      }
+      return todo;
+    });
+    localStorage.setItem('tasks-container', JSON.stringify(newData));
   }
 
   SortTasks(oldIndex, newIndex) {
@@ -542,8 +571,19 @@ class Tasks {
     localStorage.setItem('tasks-container', JSON.stringify(this.list));
   }
 
-//   DeleteCompletedtask() {
-//   }
+  CompleteTask(taskId, status) {
+    const selected = this.list.findIndex((element) => element.id === taskId);
+    this.list[selected].completed = status;
+    localStorage.setItem('tasks-container', JSON.stringify(this.list));
+  }
+
+  clearCompletedTasks() {
+    this.list = this.list.filter((todo) => !todo.completed);
+    this.list.forEach((todo, index) => {
+      todo.index = index + 1;
+    });
+    localStorage.setItem('tasks-container', JSON.stringify(this.list));
+  }
 }
 
 /***/ })
@@ -626,53 +666,31 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-const tasklist = new _tasks_js__WEBPACK_IMPORTED_MODULE_2__["default"]();
-(0,_display_js__WEBPACK_IMPORTED_MODULE_1__["default"])(tasklist);
+const tasksContainer = document.querySelector('.tasks-container');
+const taskLists = new _tasks_js__WEBPACK_IMPORTED_MODULE_2__["default"]();
+(0,_display_js__WEBPACK_IMPORTED_MODULE_1__["default"])(taskLists, tasksContainer);
 
 const addTodoBtn = document.querySelector('.add-btn');
 addTodoBtn.addEventListener('click', () => {
+  const id = `id${Math.random().toString(16).slice(2)}`;
   const description = document.querySelector('.input-todo').value.trim();
   const completed = false;
-  const index = tasklist.list.length + 1;
-  const newTodo = { description, completed, index };
+  const index = taskLists.list.length + 1;
+  const newTodo = {
+    id, description, completed, index,
+  };
   if (description) {
-    tasklist.addTask(newTodo);
-    (0,_display_js__WEBPACK_IMPORTED_MODULE_1__["default"])(tasklist);
+    taskLists.addTask(newTodo);
+    (0,_display_js__WEBPACK_IMPORTED_MODULE_1__["default"])(taskLists, tasksContainer);
   }
 });
 
-const tasklists = [{
-  description: 'task 1',
-  completed: true,
-  index: 1,
-}, {
-  description: 'task 2',
-  completed: false,
-  index: 2,
-}, {
-  description: 'task 3',
-  completed: true,
-  index: 3,
-}, {
-  description: 'task 4',
-  completed: true,
-  index: 4,
-}];
-(0,_display_js__WEBPACK_IMPORTED_MODULE_1__["default"])(tasklists);
-
-// const render = (tasks) => {
-//   const tasksListSorted = tasks.sort((a, b) => a.index - b.index);
-//   const tasksContainer = document.querySelector('.tasks-container');
-//   let todosHtml = '';
-//   tasksListSorted.forEach((todo) => {
-//     todosHtml += ` <div class="todo-item">
-//         <input type="checkbox" class="checkmark" /><span> ${todo.description}</span>
-//     </div>`;
-//   });
-//   tasksContainer.innerHTML = todosHtml;
-// };
-
-// render(tasklist);
+// clear all completed todos
+const clearBtn = document.querySelector('.clear-btn');
+clearBtn.addEventListener('click', () => {
+  taskLists.clearCompletedTasks();
+  (0,_display_js__WEBPACK_IMPORTED_MODULE_1__["default"])(taskLists, tasksContainer);
+});
 
 })();
 

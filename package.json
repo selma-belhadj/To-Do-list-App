@@ -11,13 +11,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ahmedtaa/webpack.git"
+    "url": "git+https://github.com/selma-belhadj/webpack.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/ahmedtaa/webpack/issues"
+    "url": "https://github.com/selma-belhadj/webpack/issues"
   },
   "homepage": "https://selma-belhadj.github.io/To-Do-list-App/",
   "devDependencies": {
