@@ -2,8 +2,7 @@
 
 # TODO LIST APP
 
-In this project, I have built a simple HTML list of To Do tasks. The list is styled according to the listed specifications . This simple web page will be built using webpack and served by a webpack dev server. I have implemented the CRUD (create, update, delete) methods. So all the elements of the user interface will be fully functional. I have added some functionality to my application to make it interactive. The user will also be able to mark task completion by selecting the corresponding checkbox (or undo it by unchecking the checkbox). The updated tasks list will be stored in local storage.
-
+A simple to-do app for managing daily tasks built with Webpack, JavaScript, HTML, and CSS. With the functionality to add, edit, remove, delete multiple completed tasks and store them to local storage using a basic design.
 
 ![](./src/images/Screenshot.png)
 ## Live Demo
